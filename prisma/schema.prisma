@@ -25,13 +25,15 @@ model TestResult {
 }
 
 model Question {
-  id          Int      @id @default(autoincrement())
-  categoryId  Int
-  text        String
-  choices     String   // JSON形式で保存
+  id            Int      @id @default(autoincrement())
+  categoryId    Int
+  text          String
+  choices       String   // JSON形式で保存
   correctAnswer String
-  Category    Category @relation(fields: [categoryId], references: [id])
+  explanation   String   @default("") @db.VarChar(500)  // 解説フィールド追加
+  Category      Category @relation(fields: [categoryId], references: [id])
 }
+
 
 model Category {
   id    Int      @id @default(autoincrement())

@@ -6,7 +6,7 @@ const submitResults = async (req, res) => {
 
   const correctAnswers = await prisma.question.findMany({
     where: { categoryId: parseInt(categoryId) },
-    select: { id: true, text: true, correctAnswer: true },
+    select: { id: true, text: true, correctAnswer: true, explanation: true },  // 解説フィールドを追加
   });
 
   let score = 0;
@@ -19,6 +19,7 @@ const submitResults = async (req, res) => {
       questionText: question.text,  // 質問のテキストを含む
       yourAnswer: userAnswer,
       correctAnswer: question.correctAnswer,
+      explanation: question.explanation,  // 解説フィールドを追加
     };
   });
 
