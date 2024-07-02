@@ -34,7 +34,6 @@ model Question {
   Category      Category @relation(fields: [categoryId], references: [id])
 }
 
-
 model Category {
   id    Int      @id @default(autoincrement())
   name  String
